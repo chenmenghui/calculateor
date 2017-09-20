@@ -4,7 +4,6 @@ class calculator {
     protected $scale;
 
     public function __construct($scale = 3) {
-        error_reporting(E_ALL & ~ E_NOTICE);
         $this->memory = 0;
         $this->scale = $scale;
     }

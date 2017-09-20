@@ -6,6 +6,10 @@ if (!class_exists('arithmeticExpression')) require 'arithmeticExpression.php';
  * Class analyticBracket
  */
 class analyticBracket extends arithmeticExpression {
+    function __construct($scale = 3) {
+        parent::__construct($scale);
+        error_reporting(E_ALL & ~ E_NOTICE);
+    }
 
     function expressionInput($input) {
         $this->check($input);
