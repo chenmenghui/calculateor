@@ -89,16 +89,14 @@ class analyticBracket extends arithmeticExpression {
             }
             $section[$block][$bracket] .= $value;
         }
-        $this->calc($section);
+        $this->segmentation($section);
     }
 
     /**
+     * 查看算数表达式中有多少括号嵌套
      * @param $section
-     * @return mixed　计算的结果
-     *
-     * 5*(3+2)+7*(1+2) =>
      */
-    private function calc($section) {
+    private function segmentation($section) {
         $max = 0;
         foreach ($section as $value) {
             $key = key($value);
@@ -106,6 +104,17 @@ class analyticBracket extends arithmeticExpression {
                 $max = $key;
             }
         }
+        $this->calc($section, $max);
+    }
+
+    /**
+     * 依次计算嵌套
+     * @param $section
+     * @return mixed　计算的结果
+     *
+     * 5*(3+2)+7*(1+2) =>
+     */
+    private function calc($section, $max) {
         if ($max > 0) {
             foreach ($section as $k => $value) {
                 $key = key($value);
@@ -124,7 +133,8 @@ class analyticBracket extends arithmeticExpression {
         if ($output !== null) {
             return $output;
         } else {
-            $this->calc($section);
+            $max--;
+            $this->calc($section, $max);
         }
     }
 }
