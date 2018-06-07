@@ -124,7 +124,7 @@ class calculator {
     }
 
     /**
-     * 清楚记忆
+     * 清除记忆
      * @return $this
      */
     public function clear() {
